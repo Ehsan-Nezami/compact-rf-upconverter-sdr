@@ -1,2 +1,2 @@
-# compact-rf-upconverter-sdr
-RF Up Converter redesign featuring USB power input, full SMD PCB implementation, and real-world validation using HackRF One and RTL-SDR spectrum analysis.
+HF Upconverter (0–30 MHz) project.
+RF hardware redesign with USB power input and SDR validation.
