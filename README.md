@@ -1,3 +1,4 @@
+![Project Cover](images/cover.png)
 # Compact RF Upconverter (0–30 MHz)
 
 ## Overview
