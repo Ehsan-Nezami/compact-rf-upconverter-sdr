@@ -4,90 +4,87 @@
 
 ## Overview
 
-This project is a compact RF upconverter designed to enable HF signal reception (0–30 MHz) using SDR platforms such as HackRF and RTL-SDR.
+This project is a compact redesign of the RF Upconverter originally published by MekWeb.
 
-The design is based on an existing open-source architecture and has been redesigned for improved practicality, compactness, and ease of assembly.
+The circuit is intended to extend the HF reception capabilities of SDR receivers by translating signals in the 0–30 MHz range into a frequency range that can be received by common SDR hardware such as RTL-SDR and HackRF One.
 
-The implementation includes full hardware redesign, USB power integration, and real-world SDR validation.
-
----
-
-## Key Improvements
-
-* USB-powered architecture (5V input)
-* Full migration to SMD components
-* Compact PCB layout optimization
-* Improved manufacturability for prototype assembly
-* SDR-based RF validation (HackRF / RTL-SDR)
+Compared to the original design, the hardware was redesigned as a compact SMD implementation and adapted for direct USB power operation.
 
 ---
 
-## Hardware Design
+## How It Works
 
-The PCB was redesigned in EasyEDA with focus on:
+The converter is built around the NE602A mixer/oscillator IC.
 
-* Controlled RF signal routing
-* Compact board footprint
-* Stable power distribution
-* Practical home-lab assembly considerations
+A crystal-controlled local oscillator operating near 100 MHz is mixed with incoming HF signals, producing translated frequency components approximately 100 MHz above the original signal.
+
+Examples:
+
+* 7 MHz → ~107 MHz
+* 14 MHz → ~114 MHz
+* 21 MHz → ~121 MHz
+
+This allows HF signals to be received using SDR receivers that do not provide optimal direct HF reception.
 
 ---
 
-## PCB Design Note (Ground Strategy)
+## Design Changes
 
-Due to prototyping in a home-lab environment, the ground polygon was intentionally simplified to improve soldering accessibility and reduce assembly complexity.
+The original architecture was preserved while several practical modifications were introduced:
 
-This trade-off was made to support faster iteration and easier debugging during early-stage development.
+* USB-powered operation (5V input)
+* Full SMD implementation
+* Compact PCB redesign
+* Optimized component placement for manual assembly
+* SDR-based validation using real RF signals
 
-For production-level designs, a full ground plane is recommended to improve RF performance, reduce noise coupling, and enhance overall signal integrity.
+---
+
+## PCB Notes
+
+The PCB was redesigned as a compact prototype suitable for home-lab assembly.
+
+To simplify soldering and debugging during the prototyping stage, the ground polygon was intentionally reduced.
+
+For production-oriented revisions, a continuous ground plane is recommended to further improve RF performance, shielding effectiveness, and noise immunity.
 
 ---
 
 ## Power Supply Considerations
 
-For optimal RF measurement accuracy, a clean power source such as a battery or high-quality power bank is recommended instead of a laptop USB port.
+RF performance is noticeably affected by power quality.
 
-Laptop USB power may introduce switching noise and ground contamination, which can degrade RF signal purity and measurement stability.
+During testing, battery-powered sources and high-quality power banks produced cleaner results than typical laptop USB ports, which may introduce switching noise and ground contamination into sensitive RF stages.
 
 ---
 
-## Validation Setup
+## Validation
 
-The system was evaluated using:
+The converter was tested using:
 
 * HackRF One
 * RTL-SDR
 
-Signal behavior and frequency conversion were verified using spectrum analysis tools.
+Frequency translation was verified through SDR spectrum analysis and practical signal reception tests.
 
 ---
 
-## Results
+## Repository Contents
 
-The system successfully demonstrated stable frequency conversion under real RF conditions.
-
-Converted signals were clearly observable and consistent in SDR-based spectrum analysis.
-
----
-
-## Project Structure
-
-* `docs/` → schematic and documentation
-* `hardware/` → Gerber manufacturing files
-* `images/` → PCB renders, physical board, and SDR results
+* `docs/` – schematic and documentation
+* `hardware/` – Gerber manufacturing files
+* `images/` – PCB renders, assembled hardware, and SDR screenshots
 
 ---
 
-## Skills Demonstrated
+## Reference
 
-* RF Hardware Design
-* PCB Design (EasyEDA)
-* SMD Implementation
-* SDR Signal Analysis
-* System-Level Debugging
+Original RF Upconverter design by MekWeb:
+
+https://mekweb.eu/?lang=en&q=download-details&f=77
 
 ---
 
-## Note
+## Notes
 
-This project is part of an ongoing exploration of RF systems and hardware-level signal processing.
+This project was built as part of an ongoing interest in RF systems, SDR platforms, signal analysis, and hardware-level experimentation.
